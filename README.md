@@ -1,0 +1,2 @@
+# springbootVue_basic
+一个从零开始搭建的springboot加vue2的后台管理系统。
