@@ -1,0 +1,49 @@
+server:
+  port: 8091
+    #ssl:
+    #   key-store: classpath:keystore.p12
+    #   key-store-password: dr441721899
+    #  key-store-type: PKCS12
+  #  key-alias: tomcat
+
+spring:
+  application:
+    name: spring_basic
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher #不配置这个spring2.7.6 无法使用swagger
+  servlet:
+    multipart: #SpringBoot内嵌的 tomcat 默认的所有上传的文件大小为 1MB，超出这个大小就会报错，解决这个问题需要更改以下两个默认
+      max-file-size: 100MB
+      max-request-size: 100MB
+  datasource:
+    druid:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://localhost:3306/springvue_basic?serverTimezone=GMT%2b8
+      username: root
+      password: hsp
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/dangren
+      #authentication-database: admin # 登录认证的逻辑库名
+      #username: admin #用户名
+      #password: abc123456 #密码
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml  #扫描所有mybatis的xml文件
+  #configuration:
+  #    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+mybatis-plus:
+  configuration:
+    #在映射实体或者属性时，将数据库中表名和字段名中的下划线去掉，按照驼峰命名法映射
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  #global-config:
+  #    db-config:
+  #      id-type: ASSIGN_ID（默认雪花算法 20位数字）
+  #      id-type:  AUTO （id自增）
+files:
+  upload:
+    path: D:/img/upload/
+  download:
+    path: D:/img/download/

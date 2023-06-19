@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/spring_basic/spring_basic.iml" filepath="$PROJECT_DIR$/spring_basic/spring_basic.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/springboot+vue_basicProject.iml" filepath="$PROJECT_DIR$/.idea/springboot+vue_basicProject.iml" />
+    </modules>
+  </component>
+</project>
