@@ -1,3 +1,3 @@
 # springbootVue_basic
 一个从零开始搭建的springboot加vue2的后台管理系统。
-用于搭建量子密码云下载系统。
+用于量子密码云项目密钥下载模块。
