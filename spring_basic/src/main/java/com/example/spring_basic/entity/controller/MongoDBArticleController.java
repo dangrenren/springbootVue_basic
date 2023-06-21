@@ -1,4 +1,4 @@
-package com.example.spring_basic.controller;
+package com.example.spring_basic.entity.controller;
 
 import com.example.spring_basic.entity.Article;
 import com.example.spring_basic.service.ArticleService;

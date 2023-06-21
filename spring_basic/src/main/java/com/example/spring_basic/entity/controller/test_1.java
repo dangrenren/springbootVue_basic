@@ -1,4 +1,4 @@
-package com.example.spring_basic.controller;
+package com.example.spring_basic.entity.controller;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.ComponentScan;

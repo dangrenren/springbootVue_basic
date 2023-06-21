@@ -1,4 +1,4 @@
-package com.example.spring_basic.controller;
+package com.example.spring_basic.entity.controller;
 
 import com.alibaba.fastjson.JSONObject;
 import com.example.spring_basic.utils.Base64URL;

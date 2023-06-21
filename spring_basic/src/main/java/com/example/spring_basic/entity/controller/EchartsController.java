@@ -1,4 +1,4 @@
-package com.example.spring_basic.controller;
+package com.example.spring_basic.entity.controller;
 
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.date.DateUtil;
