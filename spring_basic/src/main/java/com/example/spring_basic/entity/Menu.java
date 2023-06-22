@@ -1,6 +1,7 @@
 package com.example.spring_basic.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import io.swagger.annotations.ApiModel;
@@ -9,6 +10,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * <p>
@@ -20,9 +22,9 @@ import java.io.Serializable;
  */
 @Getter
 @Setter
-@TableName("role")
-@ApiModel(value = "Role对象", description = "")
-public class Role implements Serializable {
+@TableName("menu")
+@ApiModel(value = "Menu对象", description = "")
+public class Menu implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -33,10 +35,22 @@ public class Role implements Serializable {
     @ApiModelProperty("名称")
     private String name;
 
+    @ApiModelProperty("路径")
+    private String path;
+
+    @ApiModelProperty("图标")
+    private String icon;
+
     @ApiModelProperty("描述")
     private String description;
 
-    @ApiModelProperty("唯一标识")
-    private String flag;
+    @TableField(exist = false)
+    private List<Menu> children;
+
+    private Integer pid;
+
+    private String pagePath;
+    private String sortNum;
+
 
 }

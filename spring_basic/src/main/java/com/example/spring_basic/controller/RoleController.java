@@ -1,4 +1,4 @@
-package com.example.spring_basic.entity.controller;
+package com.example.spring_basic.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;

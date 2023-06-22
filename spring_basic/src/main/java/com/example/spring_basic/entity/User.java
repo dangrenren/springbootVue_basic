@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -43,6 +44,9 @@ public class User implements Serializable {
     private String email;
     private String address;
     private Date createTime;
+
+    @ApiModelProperty("角色")
+    private String role;
 
     @JsonIgnore
     public String getPassword() {

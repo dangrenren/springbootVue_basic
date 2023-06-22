@@ -2,14 +2,11 @@ package com.example.spring_basic.service;
 
 import cn.hutool.core.collection.CollUtil;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.example.spring_basic.entity.Menu;
 import com.example.spring_basic.entity.Role;
+import com.example.spring_basic.entity.RoleMenu;
 import com.example.spring_basic.mapper.RoleMapper;
-import com.qingge.springboot.entity.Menu;
-import com.qingge.springboot.entity.Role;
-import com.qingge.springboot.entity.RoleMenu;
-import com.qingge.springboot.mapper.RoleMapper;
-import com.qingge.springboot.mapper.RoleMenuMapper;
-import com.qingge.springboot.service.IMenuService;
+import com.example.spring_basic.mapper.RoleMenuMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

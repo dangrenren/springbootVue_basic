@@ -1,4 +1,4 @@
-package com.example.spring_basic.entity.controller;
+package com.example.spring_basic.controller;
 
 import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.util.IdUtil;

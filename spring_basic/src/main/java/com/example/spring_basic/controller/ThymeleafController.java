@@ -1,4 +1,4 @@
-package com.example.spring_basic.entity.controller;
+package com.example.spring_basic.controller;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.io.ClassPathResource;
