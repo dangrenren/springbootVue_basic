@@ -163,6 +163,7 @@ public class userController {
         }
         //crtl+Alt+B快捷键直接进入实现方法
         UserDTO loginUser = iUserService.login(userDTO);
+        System.out.println(userDTO + "哈哈哈哈哈哈哈哈哈哈哈");
 
         return Result.success(loginUser);//返回的是{Constants.CODE_200, "", userDTO}
     }
