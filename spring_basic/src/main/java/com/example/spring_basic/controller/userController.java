@@ -4,6 +4,8 @@ import cn.hutool.core.util.StrUtil;
 import cn.hutool.poi.excel.ExcelReader;
 import cn.hutool.poi.excel.ExcelUtil;
 import cn.hutool.poi.excel.ExcelWriter;
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
@@ -190,6 +192,34 @@ public class userController {
         QueryWrapper<User> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("username", username);
         return Result.success(iUserService.getOne(queryWrapper));
+    }
+
+    @PostMapping("password")
+    public Result alterPassword(@RequestBody String form) {
+        //前端发来 password,newPassword,confirmPassword
+        JSONObject jsonObject = JSON.parseObject(form);
+        String username = jsonObject.getString("username");
+        String password = jsonObject.getString("password");
+        String newPassword = jsonObject.getString("newPassword");
+        //String confirmPassword = jsonObject.getString("confirmPassword");
+        //对前端密码进行校验，如果通过，将其改为新密码，否则返回error
+        User user = new User();
+        user.setUsername(username);
+        user.setPassword(password);
+        User one = iUserService.getOne(new QueryWrapper<>(user));
+        if (one != null) {
+            //查到了对应用户,修改密码
+            user.setPassword(newPassword);
+            //将新用户密码写入到数据库中
+            Integer result = iUserService.updateUser(user);
+            if (result >= 1) {
+                System.out.println("修改了密码");
+            }
+            return Result.success("修改密码成功");
+        } else {
+            System.out.println("修改密码出错，没有找到对应用户！");
+            return Result.error("400", "密码错误");
+        }
     }
 
 

@@ -30,6 +30,9 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements IM
         }
         // 查询所有数据
         List<Menu> list = list(queryWrapper);
+        //看下底层list实现的集合类
+        String listName = list.getClass().getName();
+        System.out.println(listName);
         // 找出pid为null的一级菜单
         List<Menu> parentNodes = list.stream().filter(menu -> menu.getPid() == null).collect(Collectors.toList());
         // 找出一级菜单的子菜单

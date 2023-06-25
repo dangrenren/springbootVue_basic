@@ -5,9 +5,6 @@
     <update id="update">
         update ren
         <set>
-            <if test="username!=null">
-                username=#{username},
-            </if>
             <if test="nickname!=null">
                 nickname=#{nickname},
             </if>
@@ -15,6 +12,6 @@
                 password=#{password}
             </if>
         </set>
-        where id=#{id};
+        where username=#{username};
     </update>
 </mapper>

@@ -13,4 +13,5 @@ public interface RoleMapper extends BaseMapper<Role> {
     @Select("select id from role where flag = #{flag}")
     Integer selectByFlag(@Param("flag") String flag);
 
+
 }

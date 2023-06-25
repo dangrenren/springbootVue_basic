@@ -13,6 +13,7 @@ public interface IUserService extends IService<User> {
 
     Integer deleteUser(Integer id);
 
+    //修改用户密码的方法
     Integer updateUser(User user);
 
     List<User> getOnePageUser(Integer pageNum, Integer pageSize);

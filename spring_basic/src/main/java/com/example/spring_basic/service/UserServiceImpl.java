@@ -17,6 +17,7 @@ import com.example.spring_basic.mapper.RoleMenuMapper;
 import com.example.spring_basic.mapper.UserMapper;
 import com.example.spring_basic.utils.TokenUtils;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.poi.ss.formula.functions.T;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -91,28 +92,31 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
         Integer roleId = roleMapper.selectByFlag(role);
         // 当前角色的所有菜单id集合
         List<Integer> menuIds = roleMenuMapper.selectByRoleId(roleId);
-        //我查出来所有menu_id后，形成一个树形的列表，仿照之前青戈 MenuServiceImpl的findMenus方法行形成树形表的写法
-        //先根据id 得到所需的菜单列表，再形成树形表
-        List<Menu> list = new ArrayList<>();
-        for (Integer menuId : menuIds) {
-            list.add(menuService.getById(menuId));
-        }
-        for (Menu menu : list) {
-            System.out.println(menu.getName());
-        }
-        System.out.println("66666666666666666666666666666666666666666");
-        //list处理为树形表
-        // 找出pid为null的一级菜单
-        List<Menu> roleMenus = list.stream().filter(menu -> menu.getPid() == null).collect(Collectors.toList());
-        // 找出一级菜单的子菜单
-        for (Menu menu : roleMenus) {
-            // 筛选所有数据中pid=父级id的数据就是二级菜单
-            menu.setChildren(list.stream().filter(m -> menu.getId().equals(m.getPid())).collect(Collectors.toList()));
-        }
-        return roleMenus;
-
         /**
-         //这是青戈的写法，我不用这个，有点晦涩难懂
+         * 我的写法
+         //我查出来所有menu_id后，形成一个树形的列表，仿照之前青戈 MenuServiceImpl的findMenus方法行形成树形表的写法
+         //先根据id 得到所需的菜单列表，再形成树形表
+         List<Menu> list = new ArrayList<>();
+         for (Integer menuId : menuIds) {
+         list.add(menuService.getById(menuId));
+         }
+         //for (Menu menu : list) {//为什么不能打印？
+         //   System.out.println(menu.getName());
+         //}
+         System.out.println("66666666666666666666666666666666666666666");
+         //list处理为树形表
+         // 找出pid为null的一级菜单
+         List<Menu> roleMenus = list.stream().filter(menu -> menu.getPid() == null).collect(Collectors.toList());
+         // 找出一级菜单的子菜单
+         for (Menu menu : roleMenus) {
+         // 筛选所有数据中pid=父级id的数据就是二级菜单
+         menu.setChildren(list.stream().filter(m -> menu.getId().equals(m.getPid())).collect(Collectors.toList()));
+         }
+         return roleMenus;
+         **/
+
+
+        //这是青戈的写法，我不用这个，有点晦涩难懂
          // 查出系统所有的菜单(树形)
          List<Menu> menus = menuService.findMenus("");
          // new一个最后筛选完成之后的list
@@ -127,7 +131,6 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
          children.removeIf(child -> !menuIds.contains(child.getId()));
          }
          return roleMenus;
-         **/
 
     }
 
