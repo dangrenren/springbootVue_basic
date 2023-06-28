@@ -7,29 +7,25 @@ import cn.hutool.crypto.SecureUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.example.spring_basic.entity.Files;
 import com.example.spring_basic.service.IFileService;
-import org.apache.commons.collections4.Get;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import org.yaml.snakeyaml.util.UriEncoder;
 
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
-import javax.xml.crypto.dsig.spec.XSLTTransformParameterSpec;
 import java.io.File;
 import java.io.IOException;
-import java.io.OutputStream;
-import java.net.URL;
 import java.net.URLEncoder;
-import java.util.List;
 
 @RestController
 @RequestMapping("/file")
-public class fileController {
+public class fileUploadController {
     @Value("${files.upload.path}")
     private String fileUploadPath;
+
+    @Value("${files.download.path}")
+    private String fileDownloadPath;
 
     @Autowired
     private IFileService iFileService;
@@ -78,7 +74,7 @@ public class fileController {
     @GetMapping("/{fileUuid}")
     public void download(HttpServletResponse response, @PathVariable String fileUuid) throws IOException {
         //根据文件标识码获取文件
-        File downlodaFile = new File(fileUploadPath + fileUuid);
+        File downlodaFile = new File(fileDownloadPath + fileUuid);
         //设置输出流格式
         ServletOutputStream os = response.getOutputStream();
         response.setContentType("application/octet-stream");

@@ -123,18 +123,35 @@
 		<!--引入七牛云-->
 		<dependency>
 			<groupId>com.qiniu</groupId>
-			<artifactId>qiniu-java-sdk</artifactId>
-			<version>7.2.25</version>
-		</dependency>
+            <artifactId>qiniu-java-sdk</artifactId>
+            <version>7.2.25</version>
+        </dependency>
 
-		<!--引入mongoDB-->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-mongodb</artifactId>
-		</dependency>
+        <!--引入mongoDB-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-mongodb</artifactId>
+        </dependency>
 
+        <!--引入springbboot Auctor监控-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+            <version>3.1.0</version>
+        </dependency>
 
-	</dependencies>
+        <!--用springboot admin ，本机的8092是admin的client ,8093springAdmnin的server-->
+        <dependency>
+            <groupId>de.codecentric</groupId>
+            <artifactId>spring-boot-admin-starter-client</artifactId>
+            <version>2.7.1</version>
+        </dependency>
+        <dependency>
+            <groupId>de.codecentric</groupId>
+            <artifactId>spring-boot-admin-starter-server</artifactId>
+            <version>2.7.1</version>
+        </dependency>
+    </dependencies>
 
 	<build>
 		<plugins>

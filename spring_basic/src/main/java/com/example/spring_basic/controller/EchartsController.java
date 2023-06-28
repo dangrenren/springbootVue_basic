@@ -4,6 +4,7 @@ import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.date.Quarter;
 import com.example.spring_basic.common.Result;
+import com.example.spring_basic.config.AuthAccess;
 import com.example.spring_basic.entity.User;
 import com.example.spring_basic.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,10 +19,12 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/echarts")
+
 public class EchartsController {
     @Autowired
     private IUserService userService;
 
+    @AuthAccess
     @GetMapping("/example")
     public Result getChartData() {
         HashMap<String, Object> hashMap = new HashMap<>();
@@ -31,6 +34,7 @@ public class EchartsController {
         return Result.success(hashMap);
     }
 
+    @AuthAccess
     @GetMapping("/members")
     public Result members() {
         List<User> list = userService.list();

@@ -1,9 +1,9 @@
 server:
-  port: 8091
+  port: 8094
     #ssl:
     #   key-store: classpath:keystore.p12
     #   key-store-password: dr441721899
-    #  key-store-type: PKCS12
+  #  key-store-type: PKCS12
   #  key-alias: tomcat
 
 spring:
@@ -29,6 +29,18 @@ spring:
       #username: admin #用户名
       #password: abc123456 #密码
 
+      #配置springboot admin client 用于推送actuator 的信息到哪个服务器
+      #这里有个BUg ,在admin页面中显示的客户端的IP地址是错误的，是7.1,
+      #不知道是不是因为我的admin client和server都在8091端口导致的。用下面这个pefer-ip属性可以解决，就是实例的ip地址不是localhost,是无线网的ip地址.但是acyuator的地址仍是127.0.0.1
+  boot:
+    admin:
+      client:
+        url: http://localhost:8094
+        enabled: true
+        #prefer-ip 是否使用注册的ip地址来取代上述各个url中hostname的值(不配置这个将来实例的ip地址是错的)
+        instance:
+          prefer-ip: true
+
 mybatis:
   mapper-locations: classpath:mapper/*.xml  #扫描所有mybatis的xml文件
   #configuration:
@@ -47,3 +59,27 @@ files:
     path: D:/img/upload/
   download:
     path: D:/img/download/
+    #path /home/dangren
+
+reggie:
+  path: D:\img\
+
+#配置pringboot actuator运行监控 在8092端口
+management:
+  server:
+    address: localhost
+    port: 8093
+
+    #不改变port端口，使用默认的8080端口会报错.使用8091端口也会报错
+  endpoints:
+    web:
+      exposure:
+        include: '*'  # 允许所有端点暴露
+  endpoint:
+    health:
+      show-details: always  # 显示健康检查的详细信息
+    info:
+      enabled: true  # 启用info端点
+
+
+
