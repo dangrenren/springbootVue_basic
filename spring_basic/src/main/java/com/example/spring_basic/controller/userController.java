@@ -12,6 +12,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.example.spring_basic.common.Constants;
 import com.example.spring_basic.common.Result;
+import com.example.spring_basic.config.AuthAccess;
 import com.example.spring_basic.entity.User;
 import com.example.spring_basic.entity.dto.UserDTO;
 import com.example.spring_basic.service.IUserService;
@@ -40,7 +41,7 @@ import java.util.Map;
 public class userController {
 
     @Autowired
-    private IUserService iUserService;
+    public IUserService iUserService;
 
     @GetMapping("/allUsers")
     public List<User> getAllUsers() {
@@ -103,6 +104,9 @@ public class userController {
         return page;
     }
 
+    /*
+    用阿里的Easyexcel也可以做，不用hutool Poi
+     */
     @GetMapping("/export")
     public void export(HttpServletResponse response) throws Exception {
         // 从数据库查询出所有的数据
@@ -220,6 +224,19 @@ public class userController {
             System.out.println("修改密码出错，没有找到对应用户！");
             return Result.error("400", "密码错误");
         }
+    }
+
+    //@AuthAccess
+    @GetMapping("/getUserGroupName/{username}")
+    public Result getUserGroupName(@PathVariable String username) {
+        String groupName = iUserService.getUserGroupName(username);
+        /*
+        QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("username", username);
+        User user = iUserService.getOne(queryWrapper);
+        String groupName= user.getGroupName();
+        */
+        return Result.success(groupName);
     }
 
 

@@ -74,6 +74,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
         User one = getOne(queryWrapper, true);
         if (one != null) {//查到的数据不为空，那么就是查到了用户，返回的是true.否则是返回false
             BeanUtil.copyProperties(one, userDTO, true); //hutoo工具，将User类属性复制到UserDTO中
+            log.warn(userDTO.toString());
             //设置Token
             String token = TokenUtils.genToken(one.getId().toString(), one.getPassword());
             userDTO.setToken(token);
@@ -145,4 +146,27 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
         }
         return true;
     }
+
+    @Override
+    public String getUserGroupName(String username) {
+        //查找用户名为此用户名的用户
+        List<User> users = userMapper.selectList(new QueryWrapper<User>().eq("username", username));
+        String groupName = null;
+        if (users.size() == 1) {
+            groupName = users.get(0).getGroupName();
+            return groupName;
+        } else if (users.size() == 0) {
+            log.error("未找到用户名为{}的用户", username);
+        } else {
+            throw new ServiceException(Constants.CODE_600, "用户名为" + username + "的用户不止一个");
+        }
+        return groupName;
+    }
+
+    @Override
+    public List<User> getMembersByGroupName(String groupName) {
+        List<User> users = userMapper.selectList(new QueryWrapper<User>().eq("group_name", groupName));
+        return users;
+    }
+
 }

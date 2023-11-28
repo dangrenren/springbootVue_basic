@@ -22,7 +22,6 @@ public class ThymeleafController {
         String imageURL = "static/weChat.jpg";
         ClassPathResource resource = new ClassPathResource(imageURL);
         byte[] imageBytes = Files.readAllBytes(resource.getFile().toPath());
-
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.IMAGE_JPEG);
         return new ResponseEntity<>(imageBytes, headers, 200);

@@ -1,7 +1,6 @@
 package com.example.spring_basic.service;
 
 import com.example.spring_basic.entity.Article;
-
 import java.util.List;
 
 public interface ArticleService {

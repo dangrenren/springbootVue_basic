@@ -1,11 +1,10 @@
 server:
-  port: 8094
+  port: 8091
     #ssl:
     #   key-store: classpath:keystore.p12
-    #   key-store-password: dr441721899
+  #   key-store-password: dr441721899
   #  key-store-type: PKCS12
   #  key-alias: tomcat
-
 spring:
   application:
     name: spring_basic
@@ -16,6 +15,18 @@ spring:
     multipart: #SpringBoot内嵌的 tomcat 默认的所有上传的文件大小为 1MB，超出这个大小就会报错，解决这个问题需要更改以下两个默认
       max-file-size: 100MB
       max-request-size: 100MB
+  #配置jpa
+  jpa:
+    database: MYSQL
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+      #ssl-auto:update根据实体类的定义，自动更新表结构。如果表不存在，会创建表；如果表已存在，会根据实体类的定义更新表结构，但不会删除已有数据。
+      #注意不要使用ddl-auto: create 这样如果之前有对应名字的表存在，会删除已经存在的表，会造成数据表的丢失。
+    properties:
+      hibernate:
+        nameing-strategy: org.hibernate.cfg.DefaultNamingStrategy
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
   datasource:
     druid:
       driver-class-name: com.mysql.cj.jdbc.Driver
@@ -64,6 +75,10 @@ files:
 reggie:
   path: D:\img\
 
+qauntumadd:
+  path: E:/AndroidStudy/myFirstApp/testSecret.txt
+  #path: /root/dangren/fileDownload/quantum1.txt
+
 #配置pringboot actuator运行监控 在8092端口
 management:
   server:
@@ -81,5 +96,52 @@ management:
     info:
       enabled: true  # 启用info端点
 
+# Dubbo
+dubbo:
+  application:
+    name: testProvider
+  registry:
+    address: zookeeper://localhost:2181
+    #address: nacos://127.0.0.1:8848?namespace=dubboTest
+  protocol:
+    name: dubbo
+    port: 20881 #这表示服务提供者使用 Dubbo 协议，并监听在 20881 端口上。当服务消费者调用服务时，它将连接到服务提供者的 20881 端口。
 
-
+  #kafka
+  kafka:
+    bootstrap-servers: localhost:9092 #这个是kafka的地址,对应你server.properties中配置的
+    producer:
+      batch-size: 16384 #批量大小
+      acks: -1 #应答级别:多少个分区副本备份完成时向生产者发送ack确认(可选0、1、all/-1)
+      retries: 10 # 消息发送重试次数
+      #transaction-id-prefix: transaction
+      buffer-memory: 33554432
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+      properties:
+        linger:
+          ms: 2000 #提交延迟
+          #partitioner: #指定分区器
+          #class: pers.zhang.config.CustomerPartitionHandler
+    consumer:
+      group-id: testGroup #默认的消费组ID
+      enable-auto-commit: true #是否自动提交offset
+      auto-commit-interval: 2000 #提交offset延时
+      # 当kafka中没有初始offset或offset超出范围时将自动重置offset
+      # earliest:重置为分区中最小的offset;
+      # latest:重置为分区中最新的offset(消费分区中新产生的数据);
+      # none:只要有一个分区不存在已提交的offset,就抛出异常;
+      auto-offset-reset: latest
+      max-poll-records: 500 #单次拉取消息的最大条数
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      properties:
+        session:
+          timeout:
+            ms: 120000 # 消费会话超时时间（超过这个时间 consumer 没有发送心跳，就会触发 rebalance 操作）
+        request:
+          timeout:
+            ms: 18000 # 消费请求的超时时间
+    listener:
+      missing-topics-fatal: false # consumer listener topics 不存在时，启动项目就会报错
+#      type: batch

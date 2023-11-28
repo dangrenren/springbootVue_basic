@@ -15,6 +15,7 @@
 	<description>spring_basic</description>
 	<properties>
 		<java.version>1.8</java.version>
+		<elasticsearch.version>7.12.1</elasticsearch.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -93,11 +94,6 @@
 			<artifactId>hutool-all</artifactId>
 			<version>5.7.13</version>
 		</dependency>
-		<dependency>
-			<groupId>org.apache.poi</groupId>
-			<artifactId>poi-ooxml</artifactId>
-			<version>4.1.2</version>
-		</dependency>
 
 		<!--JWT-->
 		<dependency>
@@ -120,13 +116,6 @@
 			<version>1.5.1</version>
 		</dependency>
 
-		<!--引入七牛云-->
-		<dependency>
-			<groupId>com.qiniu</groupId>
-            <artifactId>qiniu-java-sdk</artifactId>
-            <version>7.2.25</version>
-        </dependency>
-
         <!--引入mongoDB-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -141,17 +130,101 @@
         </dependency>
 
         <!--用springboot admin ，本机的8092是admin的client ,8093springAdmnin的server-->
-        <dependency>
-            <groupId>de.codecentric</groupId>
-            <artifactId>spring-boot-admin-starter-client</artifactId>
-            <version>2.7.1</version>
-        </dependency>
-        <dependency>
-            <groupId>de.codecentric</groupId>
-            <artifactId>spring-boot-admin-starter-server</artifactId>
-            <version>2.7.1</version>
-        </dependency>
-    </dependencies>
+		<dependency>
+			<groupId>de.codecentric</groupId>
+			<artifactId>spring-boot-admin-starter-client</artifactId>
+			<version>2.7.1</version>
+		</dependency>
+		<dependency>
+			<groupId>de.codecentric</groupId>
+			<artifactId>spring-boot-admin-starter-server</artifactId>
+			<version>2.7.1</version>
+		</dependency>
+		<!--配置socket IO 包-->
+		<dependency>
+			<groupId>com.corundumstudio.socketio</groupId>
+			<artifactId>netty-socketio</artifactId>
+			<version>1.7.19</version>
+		</dependency>
+		<!--引入easyExcel-->
+
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>easyexcel</artifactId>
+			<version>3.3.2</version>
+		</dependency>
+		<!--引入okhttp-->
+		<dependency>
+			<groupId>com.squareup.okhttp3</groupId>
+			<artifactId>okhttp</artifactId>
+			<version>3.3.1</version>
+		</dependency>
+		<!--引入jpa,默认实现是hiberate-->
+		<!-- Spring Boot Starter Data JPA -->
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.elasticsearch.client</groupId>
+			<artifactId>elasticsearch-rest-high-level-client</artifactId>
+		</dependency>
+		<!--布隆过滤器-->
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>28.0-jre</version>
+		</dependency>
+		<!--使用dubbo服务-->
+		<dependency>
+			<groupId>org.apache.dubbo</groupId>
+			<artifactId>dubbo-spring-boot-starter</artifactId>
+			<version>3.0.7</version> <!-- 请替换为最新版本 -->
+		</dependency>
+		<!--        zookeeper客户端-->
+		<!--		<dependency>-->
+		<!--			<groupId>org.apache.curator</groupId>-->
+		<!--			<artifactId>curator-framework</artifactId>-->
+		<!--			<version>5.2.1</version>-->
+		<!--		</dependency>-->
+		<!--		<dependency>-->
+		<!--			<groupId>org.apache.curator</groupId>-->
+		<!--			<artifactId>curator-recipes</artifactId>-->
+		<!--			<version>5.2.1</version>-->
+		<!--		</dependency>-->
+		<!--		<dependency>-->
+		<!--			<groupId>org.apache.curator</groupId>-->
+		<!--			<artifactId>curator-x-discovery</artifactId>-->
+		<!--			<version>5.2.1</version>-->
+		<!--		</dependency>-->
+		<!--dubbo注册zookeerper-->
+		<dependency>
+			<groupId>org.apache.dubbo</groupId>
+			<artifactId>dubbo-registry-zookeeper</artifactId>
+			<version>3.0.7</version>
+		</dependency>
+		<!--dubbo注册nacos-->
+		<dependency>
+			<groupId>org.apache.dubbo</groupId>
+			<artifactId>dubbo-registry-nacos</artifactId>
+			<version>3.0.7</version>
+		</dependency>
+		<!--引入kafka-->
+		<dependency>
+			<groupId>org.springframework.kafka</groupId>
+			<artifactId>spring-kafka</artifactId>
+		</dependency>
+
+		<!--引入api模块-->
+		<dependency>
+			<groupId>com.example</groupId>
+			<artifactId>api</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+			<scope>compile</scope>
+		</dependency>
+	</dependencies>
 
 	<build>
 		<plugins>

@@ -23,4 +23,8 @@ public interface IUserService extends IService<User> {
     UserDTO login(UserDTO userDTO);
 
     Boolean registerUser(UserDTO userDTO);
+
+    String getUserGroupName(String username);
+
+    List<User> getMembersByGroupName(String groupName);
 }

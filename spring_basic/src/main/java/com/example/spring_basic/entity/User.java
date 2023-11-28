@@ -1,7 +1,7 @@
 package com.example.spring_basic.entity;
-
 import cn.hutool.core.annotation.Alias;
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -14,7 +14,6 @@ import lombok.ToString;
 
 import java.io.Serializable;
 import java.util.Date;
-
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -47,6 +46,8 @@ public class User implements Serializable {
 
     @ApiModelProperty("角色")
     private String role;
+    @TableField(value = "group_name")
+    private String groupName;
 
     @JsonIgnore
     public String getPassword() {

@@ -1,11 +1,9 @@
 package com.example.spring_basic.entity;
-
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
-
 @Data
 @TableName("file")
 public class Files {
@@ -19,5 +17,4 @@ public class Files {
     private Boolean enable;
     private Boolean isDelete;
     private String md5;
-
 }

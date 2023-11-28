@@ -1,7 +1,5 @@
 package com.example.spring_basic.config;
-
 import java.lang.annotation.*;
-
 @Target({ElementType.TYPE, ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
 @Documented

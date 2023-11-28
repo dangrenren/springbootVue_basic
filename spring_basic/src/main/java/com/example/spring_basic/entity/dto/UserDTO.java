@@ -15,5 +15,6 @@ public class UserDTO {
     private String nickname;
     private String token;
     private String role;
+    private String groupName;
     private List<Menu> menus;
 }

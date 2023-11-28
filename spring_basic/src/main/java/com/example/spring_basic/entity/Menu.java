@@ -1,5 +1,4 @@
 package com.example.spring_basic.entity;
-
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
@@ -11,7 +10,6 @@ import lombok.Setter;
 
 import java.io.Serializable;
 import java.util.List;
-
 /**
  * <p>
  *
