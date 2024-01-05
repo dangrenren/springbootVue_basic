@@ -216,6 +216,13 @@
 			<groupId>org.springframework.kafka</groupId>
 			<artifactId>spring-kafka</artifactId>
 		</dependency>
+		<!--引入eddsa签名jar包-->
+		<dependency>
+			<groupId>net.i2p.crypto</groupId>
+			<artifactId>eddsa</artifactId>
+			<version>0.3.0</version>
+		</dependency>
+
 
 		<!--引入api模块-->
 		<dependency>

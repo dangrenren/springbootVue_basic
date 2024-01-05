@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/api/api.iml" filepath="$PROJECT_DIR$/api/api.iml" />
-      <module fileurl="file://$PROJECT_DIR$/spring_basic/spring_basic.iml" filepath="$PROJECT_DIR$/spring_basic/spring_basic.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/springboot+vue_basicProject.iml" filepath="$PROJECT_DIR$/.idea/springboot+vue_basicProject.iml" />
-      <module fileurl="file://$PROJECT_DIR$/test/test.iml" filepath="$PROJECT_DIR$/test/test.iml" />
     </modules>
   </component>
 </project>
